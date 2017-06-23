@@ -43,10 +43,9 @@ app.get('/search', (req, res, next) => {
 });
 
 app.post('/search', (req, res, next) => {
-    let searchTerm = req.body.searchTerm;
-    client.search(searchTerm)
+    client.search(req.body.searchTerm)
         .then((response) => {
-        res.send(response,value);
+        res.send(response.items);
     }).catch((err) => {
         console.log(err);
     });

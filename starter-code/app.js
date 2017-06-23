@@ -39,16 +39,23 @@ app.get('/categories', (req, res, next) => {
 });
 
 app.get('/search', (req, res, next) => {
-    res.render('search-form');
+    res.render('search-form', {
+        viewStatus: 'search'
+    });
 });
 
 app.post('/search', (req, res, next) => {
     client.search(req.body.searchTerm)
         .then((response) => {
-        res.send(response.items);
+        res.render('search-form', {
+            jokes: response.items,
+            viewStatus: 'show-results'
+        });
     }).catch((err) => {
         console.log(err);
     });
+
+    
 });
 
 app.listen(3000,() => {

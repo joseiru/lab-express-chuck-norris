@@ -5,4 +5,11 @@
   <button type="submit">
     Search
   </button>
+  <% if (viewStatus === 'show-results') { %>
+  <ul>
+    <% jokes.forEach(joke => { %>
+        <li><%= joke.value%></li>
+    <% }) %>
+  </ul>
+  <% } %>
 </form>
